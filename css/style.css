@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.fd-column {
+  flex-direction: column;
+}
+
+.jc-space-around {
+  justify-content: space-around;
+}
+
+.jc-space-between {
+  justify-content: space-between;
+}
+
+.jc-space-evenly {
+  justify-content: space-evenly;
+}
+
+.fw-wrap {
+  flex-wrap: wrap;
+}
+
+.fg-1 {
+  flex-grow: 1;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.ac-flex-start {
+    align-content: flex-start;
+}
+
+body {
+  min-height: 100vh;
+}
+
+nav {
+  background: #e5e9f0;
+  padding: 5px 20px;
+}
+
+a {
+  color: #4c566a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logotype a:hover {
+  text-decoration: none;
+}
+
+.navbar div {
+  font-size: 16px;
+  padding: 15px 5px;
+  white-space: nowrap;
+}
+
+.logotype a,
+.menu a {
+  font-size: 20px;
+}
+
+.navbar {
+}
+
+.menu {
+  order: 1;
+}
+
+.navbar-item {
+  width: 100%;
+  text-align: center;
+  order: 2;
+  display: none;
+}
+
+.navbar-item.active {
+  display: block;
+}
+
+.carrousel {
+  background-color: #fff;
+  height: 20vh;
+}
+
+.title {
+  width: 100%;
+}
+
+.products {
+  background-color: #eceff4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.products-item {
+  background-color: #fff;
+  margin: 3px;
+  width: 100%;
+  height: auto;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px 2px #e5e9f0;
+  padding: 2px;
+}
+
+.offers {
+  background-color: #eceff4;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.offers-item {
+  background-color: #fff;
+  margin: 3px;
+  width: 45%;
+  height: auto;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px 2px #e5e9f0;
+  padding: 2px;
+}
+
+.price {
+  padding: 3px;
+}
+
+.footer {
+  background-color: #fff;
+  height: 20vh;
+}
+
+.product-img {
+  height: 10vh;
+  object-fit: cover;
+  border-radius: 0.25em;
+}
+
+.offer-img {
+  height: 95%;
+  width: 95%;
+  object-fit: cover;
+  border-radius: 0.25em;
+}
+
+@media all and (min-width: 1280px) {
+  .navbar-item {
+    display: block;
+    width: auto;
+  }
+  .menu {
+    display: none;
+  }
+  .logo {
+    order: 0;
+  }
+  .navbar-item {
+    order: 1;
+  }
+  .navbar div {
+    padding: 15px 10px;
+  }
+  .offers-item {
+    width: 20%;
+  }
+}
