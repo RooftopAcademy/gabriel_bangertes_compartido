@@ -47,5 +47,13 @@ document.querySelector(".js-home").addEventListener("click", function () {
         </div>`;
     let offers = main.querySelector(".offers");
     ui.addOfferViews(offers, ui.store.catalog);
+    productButton();
 });
 
+// PRODUCT DETAIL
+function productButton() {
+    Array.from(document.getElementsByClassName("offers-item"))
+        .forEach((offerView) => offerView.addEventListener("click", () => ui.renderDetailView(offerView)));
+}
+
+productButton();
