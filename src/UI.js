@@ -17,6 +17,9 @@ class UI {
     }
 
     renderDetailView(offerView) {
-        document.querySelector("main").innerHTML = productDetailView(this._store.getProductById(offerView.dataset.id));
+        const offer = this._store.getProductById(offerView.dataset.id);
+        const main = document.querySelector("main");
+        main.innerHTML = productDetailView(offer);
+        offer.comments.forEach((comment) => main.innerHTML += commentView(comment));
     }
 }
