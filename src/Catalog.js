@@ -10,4 +10,8 @@ class Catalog {
     get productList() {
         return this._productList;
     }
+
+    getProduct(id) {
+        return this._productList.find(product => product.id == id);
+    }
 }
