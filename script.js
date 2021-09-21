@@ -57,3 +57,5 @@ function productButton() {
 }
 
 productButton();
+
+ui.store.fetchComments();
