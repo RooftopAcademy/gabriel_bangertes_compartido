@@ -15,6 +15,10 @@ function productDetailView(product) {
             </div>
             <div>
                 <button type="button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+            </div>
+        </div>
+        <div>
+            <h2>Opiniones de nuestros clientes</h2>
         </div>
         `;
 }
