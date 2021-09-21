@@ -15,4 +15,8 @@ class UI {
     addProductViews(theHtmlElement, theProductList) {
         theProductList.forEach((product) => theHtmlElement.innerHTML += productView(product));
     }
+
+    renderDetailView(offerView) {
+        document.querySelector("main").innerHTML = productDetailView(this._store.getProductById(offerView.dataset.id));
+    }
 }
