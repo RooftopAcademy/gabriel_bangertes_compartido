@@ -26,11 +26,18 @@ class Store {
         });
     }
 
-    fetchUsers() {
+    fetchComments() {
         fetch("https://jsonplaceholder.typicode.com/comments")
         .then((response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then(addUserView(json)) 
-        .catch(error)
+        .then((json) => {
+            console.log(json);
+            console.log(this);
+            json.forEach((comment) => {
+                if (comment.postId < 7) {
+                    this.getProductById(comment.postId).addComment(comment);
+                }
+            })
+        })
     }
 
     get catalog() {
