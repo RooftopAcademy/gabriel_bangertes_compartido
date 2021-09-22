@@ -8,6 +8,9 @@ function productView(product) {
                 <h2>$ ${product.price}</h2>
                 <p>${product.title}</p>
             </div>
+            <div>
+                <button class="cart-button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+            </div>
         </div>
         `;
 }
