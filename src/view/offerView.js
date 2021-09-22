@@ -5,7 +5,7 @@ function offerView(offer) {
             <div class='price'>
                 <h2>$ ${offer.price}</h2>
                 <p>${offer.title}</p>
-                <button>AGREGAR AL CARRITO</button>
+                <button class="cart-button">AGREGAR AL CARRITO</button>
             </div>
         </div>
         `;

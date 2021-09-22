@@ -14,7 +14,7 @@ function productDetailView(product) {
                 <p>${product.description}</p>
             </div>
             <div>
-                <button type="button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+                <button class="cart-button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
             </div>
         </div>
         <div>
