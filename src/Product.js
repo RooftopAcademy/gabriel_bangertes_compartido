@@ -7,6 +7,15 @@ class Product {
         this._price = Number;
         this._img = String;
         this._quantity = Number;
+        this._comments = new Array;
+    }
+
+    addComment(theComment) {
+        this._comments.push(theComment);
+    }
+
+    get comments() {
+        return this._comments;
     }
 
     set id(theId) {

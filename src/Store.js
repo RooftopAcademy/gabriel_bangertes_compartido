@@ -5,7 +5,7 @@ class Store {
     }
 
     addProducts() {
-        let products = [
+        const products = [
             { id: 1, price: 500, quantity: 10, title: "250g Cafe Excelso Colombia", img: "img/1.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
             { id: 2, price: 1000, quantity: 15, title: "500g Cafe Excelso Colombia", img: "img/2.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
             { id: 3, price: 1500, quantity: 20, title: "2Kg Cafe Excelso Colombia", img: "img/3.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
@@ -15,7 +15,7 @@ class Store {
         ];
 
         products.forEach((product) => {
-            let newProduct = new Product;
+            const newProduct = new Product;
             newProduct.id = product.id;
             newProduct.title = product.title;
             newProduct.description = product.description;
@@ -26,7 +26,25 @@ class Store {
         });
     }
 
+    fetchComments() {
+        fetch("https://jsonplaceholder.typicode.com/comments")
+        .then((response) => (response.ok ? response.json() : Promise.reject(response)))
+        .then((json) => {
+            console.log(json);
+            console.log(this);
+            json.forEach((comment) => {
+                if (comment.postId < 7) {
+                    this.getProductById(comment.postId).addComment(comment);
+                }
+            })
+        })
+    }
+
     get catalog() {
         return this._catalog.productList;
+    }
+
+    getProductById(id) {
+        return this._catalog.getProduct(id);
     }
 }
