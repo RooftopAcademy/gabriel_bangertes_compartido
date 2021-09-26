@@ -1,4 +1,6 @@
-function offerView(offer: Product): string {
+import { Product } from "../class/Product";
+
+export function offerView(offer: Product): string {
     return `
         <div class='d-flex offers-item fd-column jc-space-evenly ai-center"' data-id='${offer.id}'>
                 <img src='${offer.img}' class='offer-img'>
