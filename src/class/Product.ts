@@ -1,4 +1,6 @@
-class Product {
+import { CommentInterface } from "./interfaces";
+
+export class Product {
 
     private _id!: number;
     private _title!: string;
@@ -9,6 +11,7 @@ class Product {
     private _comments!: CommentInterface[];
 
     constructor() {
+        this._comments = [];
     }
 
     addComment(theComment: CommentInterface): void {
