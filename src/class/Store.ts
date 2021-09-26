@@ -1,4 +1,9 @@
-class Store {
+import { Catalog } from "./Catalog";
+import { User } from "./User";
+import { Product } from "./Product";
+import { ProductInterface, CommentInterface } from "./interfaces";
+
+export class Store {
 
         private _catalog: Catalog;
         private _user: User;
