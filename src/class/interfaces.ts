@@ -1,4 +1,4 @@
-interface ProductInterface {
+export interface ProductInterface {
     id: number;
     price: number;
     quantity: number;
@@ -7,7 +7,7 @@ interface ProductInterface {
     description: string;
 }
 
-interface CommentInterface {
+export interface CommentInterface {
     postId: number;
     id: number;
     name: string;
