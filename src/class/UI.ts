@@ -1,3 +1,11 @@
+import { Store } from "./Store";
+import { Product } from "./Product";
+import { CommentInterface } from "./interfaces";
+import { productDetailView } from "../view/productDetailView";
+import { productView } from "../view/productView";
+import { offerView } from "../view/offerView";
+import { commentView } from "../view/commentView";
+
 export class UI {
     
     private _store: Store;
