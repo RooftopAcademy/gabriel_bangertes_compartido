@@ -1,4 +1,6 @@
-class Catalog {
+import { Product } from "./Product";
+
+export class Catalog {
 
     private _productList: Product[];
 
