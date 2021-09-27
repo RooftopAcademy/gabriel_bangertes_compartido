@@ -24,12 +24,14 @@ export class UI {
         nav.innerHTML = navbar();
     }
 
-    expandNavbar(navbarItems: HTMLCollection): void {
-        Array.from(navbarItems).forEach((item: HTMLElement) => item.classList.add("active")); 
+    expandNavbar(nav: HTMLElement): void {
+        Array.from(nav.getElementsByClassName("navbar-item") as HTMLCollection).forEach((item: HTMLElement) => item.classList.add("active")); 
+        (nav.querySelector(".hamburger-btn") as HTMLElement).innerHTML = `<i class="fas fa-times"></i>`;
     }
 
-    retractNavbar(navbarItems: HTMLCollection): void {
-        Array.from(navbarItems).forEach((item: HTMLElement) => item.classList.remove("active"));
+    retractNavbar(nav: HTMLElement): void {
+        Array.from(nav.getElementsByClassName("navbar-item") as HTMLCollection).forEach((item: HTMLElement) => item.classList.remove("active")); 
+        (nav.querySelector(".hamburger-btn") as HTMLElement).innerHTML = `<i class="fas fa-bars"></i>`;
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
