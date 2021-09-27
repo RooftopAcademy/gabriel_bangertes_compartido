@@ -2,7 +2,6 @@ import { Catalog } from "./Catalog";
 import { User } from "./User";
 import { Product } from "./Product";
 import { ProductInterface, CommentInterface } from "./interfaces";
-import { UI } from "./UI";
 
 export class Store {
 
