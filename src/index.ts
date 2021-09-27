@@ -6,21 +6,22 @@ const carrousel: string = "<h2>CARROUSEL</h2>";
 const ui: UI = new UI;
 const offers: HTMLElement = document.querySelector(".offers") as HTMLElement;
 ui.fetchProducts(offers, productButton);
+const nav: HTMLElement = document.querySelector("nav") as HTMLElement;
+ui.renderNavbar(nav);
+addNavbarActions();
 
 // NAVBAR
-(document.querySelector(".menu") as HTMLElement).addEventListener("click", function () {
-    if ((document.querySelector(".navbar-item") as HTMLElement).classList.contains("active")) {
-        for (let i: number = 0; i < (document.getElementsByClassName("navbar-item") as HTMLCollection).length; i++) {
-            (document.getElementsByClassName("navbar-item").item(i) as HTMLElement).classList.remove("active");
+function addNavbarActions(): void {
+    (document.querySelector(".menu") as HTMLElement).addEventListener("click", function () {
+        if ((document.querySelector(".navbar-item") as HTMLElement).classList.contains("active")) {
+            ui.retractNavbar(document.getElementsByClassName("navbar-item") as HTMLCollection);
+            (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-bars"></i>`;
+        } else {
+            ui.expandNavbar(document.getElementsByClassName("navbar-item") as HTMLCollection);
+            (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-times"></i>`;
         }
-        (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-bars"></i>`;
-    } else {
-        for (let i: number = 0; i < (document.getElementsByClassName("navbar-item") as HTMLCollection).length; i++) {
-            (document.getElementsByClassName("navbar-item").item(i) as HTMLElement).classList.add("active");
-        }
-        (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-times"></i>`;
-    }
-});
+    });
+};
 
 // PRODUCTS BUTTON
 (document.querySelector(".js-products") as HTMLElement).addEventListener("click", function () {
@@ -34,6 +35,7 @@ ui.fetchProducts(offers, productButton);
     const products: HTMLElement = (main.querySelector(".products") as HTMLElement);
     ui.addProductViews(products, ui.store.catalog);
     productButton();
+    ui.retractNavbar(document.getElementsByClassName("navbar-item") as HTMLCollection);
 });
 
 // HOME BUTTON
@@ -51,6 +53,7 @@ ui.fetchProducts(offers, productButton);
     const offers: HTMLElement = (main.querySelector(".offers") as HTMLElement);
     ui.addOfferViews(offers, ui.store.catalog);
     productButton();
+    ui.retractNavbar(document.getElementsByClassName("navbar-item") as HTMLCollection);
 });
 
 // PRODUCT DETAIL
