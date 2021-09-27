@@ -12,7 +12,7 @@ export class UI {
 
     constructor() {
         this._store = new Store;
-        this._store.addProducts();
+        this._store.fetchProducts();
     }
 
     get store() {
