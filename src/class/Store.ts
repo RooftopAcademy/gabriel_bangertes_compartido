@@ -2,6 +2,7 @@ import { Catalog } from "./Catalog";
 import { User } from "./User";
 import { Product } from "./Product";
 import { ProductInterface, CommentInterface } from "./interfaces";
+import { UI } from "./UI";
 
 export class Store {
 
@@ -13,14 +14,9 @@ export class Store {
         this._user = new User;
     }
 
-    fetchProducts(): void {
-        fetch("../json/products.json")
-        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then((json: ProductInterface[]) => {
-            json.forEach((product: ProductInterface) => {
-                this._catalog.addProduct(product);
-            })
-        })
+    addProducts(productList: ProductInterface[]): Product[] {
+        productList.forEach((product: ProductInterface) => this._catalog.addProduct(product));
+        return this.catalog;
     }
 
     fetchComments(): void {

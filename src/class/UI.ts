@@ -5,6 +5,7 @@ import { productDetailView } from "../view/productDetailView";
 import { productView } from "../view/productView";
 import { offerView } from "../view/offerView";
 import { commentView } from "../view/commentView";
+import { ProductInterface } from "./interfaces";
 
 export class UI {
     
@@ -12,11 +13,19 @@ export class UI {
 
     constructor() {
         this._store = new Store;
-        this._store.fetchProducts();
     }
 
     get store() {
         return this._store;
+    }
+
+    fetchProducts(offers: HTMLElement, productButton: () => void): void {
+        fetch("products.json")
+        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
+        .then((json: ProductInterface[]) => {
+            this.addOfferViews(offers, this._store.addProducts(json));
+            productButton();
+        })
     }
 
     addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {
