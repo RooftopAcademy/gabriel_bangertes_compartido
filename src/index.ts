@@ -5,7 +5,7 @@ const carrousel: string = "<h2>CARROUSEL</h2>";
 
 const ui: UI = new UI;
 const offers: HTMLElement = document.querySelector(".offers") as HTMLElement;
-ui.addOfferViews(offers, ui.store.catalog);
+ui.fetchProducts(offers, productButton);
 
 // NAVBAR
 (document.querySelector(".menu") as HTMLElement).addEventListener("click", function () {
@@ -33,6 +33,7 @@ ui.addOfferViews(offers, ui.store.catalog);
         </div>`;
     const products: HTMLElement = (main.querySelector(".products") as HTMLElement);
     ui.addProductViews(products, ui.store.catalog);
+    productButton();
 });
 
 // HOME BUTTON
@@ -54,10 +55,8 @@ ui.addOfferViews(offers, ui.store.catalog);
 
 // PRODUCT DETAIL
 function productButton(): void {
-    Array.from(document.getElementsByClassName("offers-item") as HTMLCollection)
+    Array.from(document.querySelectorAll(".offers-item, .products-item") as NodeListOf<HTMLElement>)
         .forEach((offerView) => offerView.addEventListener("click", () => ui.renderDetailView(offerView as HTMLElement)));
 }
-
-productButton();
 
 ui.store.fetchComments();

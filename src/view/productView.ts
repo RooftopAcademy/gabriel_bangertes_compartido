@@ -2,7 +2,7 @@ import { Product } from "../class/Product";
 
 export function productView(product: Product): string {
     return `
-        <div class='d-flex products-item jc-space-evenly ai-center' product-id='${product.id}'>
+        <div class='d-flex products-item jc-space-evenly ai-center' data-id='${product.id}'>
             <div>
                 <img src='${product.img}' class='product-img'>
             </div>
