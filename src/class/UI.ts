@@ -6,6 +6,7 @@ import { productView } from "../view/productView";
 import { offerView } from "../view/offerView";
 import { commentView } from "../view/commentView";
 import { ProductInterface } from "./interfaces";
+import { navbar } from "../component/navbar";
 
 export class UI {
     
@@ -17,6 +18,18 @@ export class UI {
 
     get store() {
         return this._store;
+    }
+
+    renderNavbar(nav: HTMLElement): void {
+        nav.innerHTML = navbar();
+    }
+
+    expandNavbar(navbarItems: HTMLCollection): void {
+        Array.from(navbarItems).forEach((item: HTMLElement) => item.classList.add("active")); 
+    }
+
+    retractNavbar(navbarItems: HTMLCollection): void {
+        Array.from(navbarItems).forEach((item: HTMLElement) => item.classList.remove("active"));
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
