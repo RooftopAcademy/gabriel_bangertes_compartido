@@ -1,4 +1,6 @@
-function productDetailView(product) {
+import { Product } from "../class/Product";
+
+export function productDetailView(product: Product): string {
     return `
         <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.id}'>
             <div>
@@ -14,7 +16,7 @@ function productDetailView(product) {
                 <p>${product.description}</p>
             </div>
             <div>
-                <button type="button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+                <button class="cart-button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
             </div>
         </div>
         <div>

@@ -1,10 +1,19 @@
-class Store {
+import { Catalog } from "./Catalog";
+import { User } from "./User";
+import { Product } from "./Product";
+import { ProductInterface, CommentInterface } from "./interfaces";
+
+export class Store {
+
+        private _catalog: Catalog;
+        private _user: User;
+
     constructor() {
         this._catalog = new Catalog;
         this._user = new User;
     }
 
-    addProducts() {
+    addProducts(): void {
         const products = [
             { id: 1, price: 500, quantity: 10, title: "250g Cafe Excelso Colombia", img: "img/1.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
             { id: 2, price: 1000, quantity: 15, title: "500g Cafe Excelso Colombia", img: "img/2.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
@@ -14,7 +23,7 @@ class Store {
             { id: 6, price: 700, quantity: 7, title: "250g Cafe Guanes Genuino Colombia", img: "img/6.jpg", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem eros, tempor eu tellus et, iaculis tristique dui. Fusce suscipit augue et rhoncus scelerisque. Maecenas at sem odio. Morbi imperdiet mi sed rhoncus tincidunt. Sed at tortor non ipsum pellentesque cursus. Aenean in urna velit. Aliquam volutpat metus vitae mi facilisis accumsan. Fusce vehicula mattis maximus. Donec id tempor sapien, ac mollis tortor. Quisque tincidunt mollis tortor, ut finibus lacus laoreet sit amet."},
         ];
 
-        products.forEach((product) => {
+        products.forEach((product: ProductInterface) => {
             const newProduct = new Product;
             newProduct.id = product.id;
             newProduct.title = product.title;
@@ -26,25 +35,24 @@ class Store {
         });
     }
 
-    fetchComments() {
+    fetchComments(): void {
+
         fetch("https://jsonplaceholder.typicode.com/comments")
-        .then((response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then((json) => {
-            console.log(json);
-            console.log(this);
-            json.forEach((comment) => {
-                if (comment.postId < 7) {
+        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
+        .then((json: CommentInterface[]) => {
+            json.forEach((comment: CommentInterface) => {
+                if (this.getProductById(comment.postId)) {
                     this.getProductById(comment.postId).addComment(comment);
                 }
             })
         })
     }
 
-    get catalog() {
+    get catalog(): Product[] {
         return this._catalog.productList;
     }
 
-    getProductById(id) {
-        return this._catalog.getProduct(id);
+    getProductById(id: number): Product {
+        return this._catalog.findProduct(id);
     }
 }
