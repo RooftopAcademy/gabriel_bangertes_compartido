@@ -1,7 +1,7 @@
-import {Catalog} from "./Catalog";
-import {User} from "./User";
-import {Product} from "./Product";
-import {CommentInterface, ProductInterface} from "./interfaces";
+import {Catalog} from './Catalog';
+import {User} from './User';
+import {Product} from './Product';
+import {CommentInterface, ProductInterface} from './interfaces';
 
 export class Store {
 
@@ -24,7 +24,7 @@ export class Store {
     }
 
     fetchComments(): void {
-        fetch("https://jsonplaceholder.typicode.com/comments")
+        fetch('https://jsonplaceholder.typicode.com/comments')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((json: CommentInterface[]) => {
                 json.forEach((comment: CommentInterface) => {

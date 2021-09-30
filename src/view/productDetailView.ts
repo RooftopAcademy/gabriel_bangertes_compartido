@@ -1,10 +1,10 @@
-import {Product} from "../class/Product";
+import {Product} from '../class/Product';
 
 export function productDetailView(product: Product): string {
     return `
         <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.id}'>
             <div>
-                <img src='${product.img}' class='offer-img'>
+                <img src='${product.img}' class='offer-img' alt="image">
             </div>
             <div class=''>
                 <h2>${product.title}</h2>
@@ -16,7 +16,7 @@ export function productDetailView(product: Product): string {
                 <p>${product.description}</p>
             </div>
             <div>
-                <button class="cart-button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+                <button class='cart-button' data-id='${product.id}'>AGREGAR AL CARRITO</button>
             </div>
         </div>
         <div>
