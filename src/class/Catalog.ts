@@ -1,5 +1,5 @@
-import {ProductInterface} from "./interfaces";
-import {Product} from "./Product";
+import {ProductInterface} from './interfaces';
+import {Product} from './Product';
 
 export class Catalog {
 
@@ -10,7 +10,7 @@ export class Catalog {
     private _productList: Product[];
 
     get productList(): Product[] {
-        return this._productList.slice();
+        return [...this._productList];
     }
 
     addProduct(product: ProductInterface): void {

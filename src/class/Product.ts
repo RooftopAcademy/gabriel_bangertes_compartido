@@ -1,4 +1,4 @@
-import {CommentInterface} from "./interfaces";
+import {CommentInterface} from './interfaces';
 
 export class Product {
 
@@ -69,7 +69,7 @@ export class Product {
     private _comments!: CommentInterface[];
 
     get comments(): CommentInterface[] {
-        return this._comments.slice();
+        return [...this._comments];
     }
 
     addComment(theComment: CommentInterface): void {
