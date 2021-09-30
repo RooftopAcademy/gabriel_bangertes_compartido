@@ -5,6 +5,6 @@ export function navbar() {
             <div class="navbar-item"><a href="#" class="js-home">Home</a></div>
             <div class="navbar-item"><a href="#" class="js-products">Productos</a></div>
             <div class="search"><a href="#">BUSCAR</a></div>
-            <div class="menu"><a href="#" class="hamburger-btn"><i class="fas fa-bars"></i></a></div>
+            <div class="menu"><a href="#" class="hamburger-btn"><i class="ts-hamburger-icon fas fa-bars"></i></a></div>
         </div>`
 }
