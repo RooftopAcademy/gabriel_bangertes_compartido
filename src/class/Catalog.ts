@@ -1,3 +1,4 @@
+import { ProductInterface } from "./interfaces";
 import { Product } from "./Product";
 
 export class Catalog {
@@ -8,8 +9,15 @@ export class Catalog {
         this._productList = [];
     }
 
-    addProduct(product: Product) {
-        this._productList.push(product);
+    addProduct(product: ProductInterface) {
+        const newProduct: Product = new Product;
+        newProduct.id = product.id;
+        newProduct.title = product.title;
+        newProduct.description = product.description;
+        newProduct.price = product.price;
+        newProduct.img = product.img;
+        newProduct.quantity = product.quantity;
+        this._productList.push(newProduct);
     }
 
     get productList(): Product[] {
