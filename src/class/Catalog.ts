@@ -9,7 +9,7 @@ export class Catalog {
         this._productList = [];
     }
 
-    addProduct(product: ProductInterface) {
+    addProduct(product: ProductInterface): void {
         const newProduct: Product = new Product;
         newProduct.id = product.id;
         newProduct.title = product.title;
@@ -20,8 +20,14 @@ export class Catalog {
         this._productList.push(newProduct);
     }
 
+    removeProduct(product: Product): void {
+        if (this._productList.includes(product)) {
+            this._productList.slice(this._productList.indexOf(product), 1);
+        }
+    }
+
     get productList(): Product[] {
-        return this._productList;
+        return this._productList.slice();
     }
 
     findProduct(id: number): Product {
