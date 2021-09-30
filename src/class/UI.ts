@@ -24,14 +24,15 @@ export class UI {
         nav.innerHTML = navbar();
     }
 
-    expandNavbar(nav: HTMLElement): void {
-        Array.from(nav.getElementsByClassName("navbar-item") as HTMLCollection).forEach((item: HTMLElement) => item.classList.add("active")); 
-        (nav.querySelector(".hamburger-btn") as HTMLElement).innerHTML = `<i class="fas fa-times"></i>`;
+    toggleHamburgerIcon(iconElement: HTMLElement): void {
+        iconElement.classList.toggle("fa-bars");
+        iconElement.classList.toggle("fa-times");
     }
 
-    retractNavbar(nav: HTMLElement): void {
-        Array.from(nav.getElementsByClassName("navbar-item") as HTMLCollection).forEach((item: HTMLElement) => item.classList.remove("active")); 
-        (nav.querySelector(".hamburger-btn") as HTMLElement).innerHTML = `<i class="fas fa-bars"></i>`;
+    toggleNavbar(nav: HTMLElement): void {
+        Array.from(nav.getElementsByClassName("navbar-item") as HTMLCollection)
+            .forEach((item: HTMLElement) => item.classList.toggle("active"));
+        this.toggleHamburgerIcon(nav.querySelector(".ts-hamburger-icon"));
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
