@@ -1,4 +1,4 @@
-import { Product } from "../class/Product";
+import {Product} from "../class/Product";
 
 export function productDetailView(product: Product): string {
     return `

@@ -1,16 +1,21 @@
-import { Catalog } from "./Catalog";
-import { User } from "./User";
-import { Product } from "./Product";
-import { ProductInterface, CommentInterface } from "./interfaces";
+import {Catalog} from "./Catalog";
+import {User} from "./User";
+import {Product} from "./Product";
+import {CommentInterface, ProductInterface} from "./interfaces";
 
 export class Store {
 
-    private _catalog: Catalog;
     private _user: User;
 
     constructor() {
         this._catalog = new Catalog;
         this._user = new User;
+    }
+
+    private _catalog: Catalog;
+
+    get catalog(): Product[] {
+        return this._catalog.productList;
     }
 
     addProducts(productList: ProductInterface[]): Product[] {
@@ -20,18 +25,14 @@ export class Store {
 
     fetchComments(): void {
         fetch("https://jsonplaceholder.typicode.com/comments")
-        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then((json: CommentInterface[]) => {
-            json.forEach((comment: CommentInterface) => {
-                if (this.getProductById(comment.postId)) {
-                    this.getProductById(comment.postId).addComment(comment);
-                }
+            .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
+            .then((json: CommentInterface[]) => {
+                json.forEach((comment: CommentInterface) => {
+                    if (this.getProductById(comment.postId)) {
+                        this.getProductById(comment.postId).addComment(comment);
+                    }
+                })
             })
-        })
-    }
-
-    get catalog(): Product[] {
-        return this._catalog.productList;
     }
 
     getProductById(id: number): Product {

@@ -1,4 +1,4 @@
-import { CommentInterface } from "../class/interfaces"
+import {CommentInterface} from "../class/interfaces"
 
 export function commentView(comment: CommentInterface): string {
     return `

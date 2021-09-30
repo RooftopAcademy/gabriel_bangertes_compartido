@@ -1,12 +1,16 @@
-import { ProductInterface } from "./interfaces";
-import { Product } from "./Product";
+import {ProductInterface} from "./interfaces";
+import {Product} from "./Product";
 
 export class Catalog {
 
-    private _productList: Product[];
-
     constructor() {
         this._productList = [];
+    }
+
+    private _productList: Product[];
+
+    get productList(): Product[] {
+        return this._productList.slice();
     }
 
     addProduct(product: ProductInterface): void {
@@ -24,10 +28,6 @@ export class Catalog {
         if (this._productList.includes(product)) {
             this._productList.slice(this._productList.indexOf(product), 1);
         }
-    }
-
-    get productList(): Product[] {
-        return this._productList.slice();
     }
 
     findProduct(id: number): Product {

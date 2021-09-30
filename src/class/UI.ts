@@ -1,20 +1,19 @@
-import { Store } from "./Store";
-import { Product } from "./Product";
-import { CommentInterface } from "./interfaces";
-import { productDetailView } from "../view/productDetailView";
-import { productView } from "../view/productView";
-import { offerView } from "../view/offerView";
-import { commentView } from "../view/commentView";
-import { ProductInterface } from "./interfaces";
-import { navbar } from "../component/navbar";
+import {Store} from "./Store";
+import {Product} from "./Product";
+import {CommentInterface, ProductInterface} from "./interfaces";
+import {productDetailView} from "../view/productDetailView";
+import {productView} from "../view/productView";
+import {offerView} from "../view/offerView";
+import {commentView} from "../view/commentView";
+import {navbar} from "../component/navbar";
 
 export class UI {
-    
-    private _store: Store;
 
     constructor() {
         this._store = new Store;
     }
+
+    private _store: Store;
 
     get store() {
         return this._store;
@@ -37,11 +36,11 @@ export class UI {
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
         fetch("products.json")
-        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then((json: ProductInterface[]) => {
-            this.addOfferViews(offers, this._store.addProducts(json));
-            productButton();
-        })
+            .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
+            .then((json: ProductInterface[]) => {
+                this.addOfferViews(offers, this._store.addProducts(json));
+                productButton();
+            })
     }
 
     addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {
