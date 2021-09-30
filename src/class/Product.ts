@@ -19,7 +19,7 @@ export class Product {
     }
 
     get comments(): CommentInterface[] {
-        return this._comments;
+        return this._comments.slice();
     }
 
     set id(theId: number) {
