@@ -1,4 +1,4 @@
-import { UI } from "./class/UI";
+import {UI} from "./class/UI";
 
 const carrousel: string = "<h2>CARROUSEL</h2>";
 (document.querySelector(".carrousel") as HTMLElement).innerHTML = carrousel;
@@ -8,20 +8,14 @@ const offers: HTMLElement = document.querySelector(".offers") as HTMLElement;
 ui.fetchProducts(offers, productButton);
 const nav: HTMLElement = document.querySelector("nav") as HTMLElement;
 ui.renderNavbar(nav);
-addNavbarActions();
+addNavbarActions(nav);
 
 // NAVBAR
-function addNavbarActions(): void {
-    (document.querySelector(".menu") as HTMLElement).addEventListener("click", function () {
-        if ((document.querySelector(".navbar-item") as HTMLElement).classList.contains("active")) {
-            ui.retractNavbar(this.parentElement as HTMLElement);
-            (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-bars"></i>`;
-        } else {
-            ui.expandNavbar(this.parentElement as HTMLElement);
-            (this.querySelector("a") as HTMLElement).innerHTML = `<i class="fas fa-times"></i>`;
-        }
-    });
-};
+function addNavbarActions(navbar: HTMLElement): void {
+    (navbar.querySelector(".menu") as HTMLElement)
+        .addEventListener("click",
+            () => ui.toggleNavbar(navbar as HTMLElement));
+}
 
 // PRODUCTS BUTTON
 (document.querySelector(".js-products") as HTMLElement).addEventListener("click", function () {
@@ -35,7 +29,7 @@ function addNavbarActions(): void {
     const products: HTMLElement = (main.querySelector(".products") as HTMLElement);
     ui.addProductViews(products, ui.store.catalog);
     productButton();
-    ui.retractNavbar(nav);
+    ui.toggleNavbar(nav);
 });
 
 // HOME BUTTON
@@ -53,7 +47,7 @@ function addNavbarActions(): void {
     const offers: HTMLElement = (main.querySelector(".offers") as HTMLElement);
     ui.addOfferViews(offers, ui.store.catalog);
     productButton();
-    ui.retractNavbar(nav);
+    ui.toggleNavbar(nav);
 });
 
 // PRODUCT DETAIL
