@@ -1,6 +1,6 @@
 import Store from './Store';
 import Product from './Product';
-import {CommentInterface, ProductInterface} from './interfaces';
+import { CommentInterface, ProductInterface } from './interfaces';
 import productDetailView from '../view/productDetailView';
 import productView from '../view/productView';
 import offerView from '../view/offerView';
@@ -33,6 +33,7 @@ export default class UI {
             .forEach((item: HTMLElement) => {
                 item.classList.toggle('active');
             });
+
         this.toggleHamburgerIcon(nav.querySelector('.ts-hamburger-icon'));
     }
 
@@ -62,6 +63,7 @@ export default class UI {
             (offerViewElement.dataset.id) ? +offerViewElement.dataset.id : 0);
         const main: HTMLElement = document.querySelector('main') as HTMLElement;
         main.innerHTML = productDetailView(offer);
+
         offer.comments.forEach((comment: CommentInterface) => {
             main.innerHTML += commentView(comment);
         });

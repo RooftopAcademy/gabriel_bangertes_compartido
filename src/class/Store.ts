@@ -1,7 +1,7 @@
 import Catalog from './Catalog';
 import User from './User';
 import Product from './Product';
-import {CommentInterface, ProductInterface} from './interfaces';
+import { CommentInterface, ProductInterface } from './interfaces';
 
 export default class Store {
 
@@ -22,6 +22,7 @@ export default class Store {
         productList.forEach((product: ProductInterface) => {
             this._catalog.addProduct(product)
         });
+
         return this.catalog;
     }
 

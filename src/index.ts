@@ -2,7 +2,6 @@ import UI from './class/UI';
 
 const carrousel: string = '<h2>CARROUSEL</h2>';
 (document.querySelector('.carrousel') as HTMLElement).innerHTML = carrousel;
-
 const ui: UI = new UI;
 const offers: HTMLElement = document.querySelector('.offers') as HTMLElement;
 ui.fetchProducts(offers, productButton);
@@ -53,7 +52,10 @@ function addNavbarActions(navbar: HTMLElement): void {
 // PRODUCT DETAIL
 function productButton(): void {
     Array.from(document.querySelectorAll('.offers-item, .products-item') as NodeListOf<HTMLElement>)
-        .forEach((offerView) => offerView.addEventListener('click', () => ui.renderDetailView(offerView as HTMLElement)));
+        .forEach((offerView) => offerView.addEventListener(
+            'click',
+            () => ui.renderDetailView(offerView as HTMLElement)
+        ));
 }
 
 ui.store.fetchComments();
