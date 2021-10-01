@@ -1,9 +1,9 @@
-import {Catalog} from './Catalog';
-import {User} from './User';
-import {Product} from './Product';
+import Catalog from './Catalog';
+import User from './User';
+import Product from './Product';
 import {CommentInterface, ProductInterface} from './interfaces';
 
-export class Store {
+export default class Store {
 
     private _user: User;
 

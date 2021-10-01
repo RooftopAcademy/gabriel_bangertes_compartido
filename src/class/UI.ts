@@ -1,13 +1,13 @@
-import {Store} from './Store';
-import {Product} from './Product';
+import Store from './Store';
+import Product from './Product';
 import {CommentInterface, ProductInterface} from './interfaces';
-import {productDetailView} from '../view/productDetailView';
-import {productView} from '../view/productView';
-import {offerView} from '../view/offerView';
-import {commentView} from '../view/commentView';
-import {navbar} from '../component/navbar';
+import productDetailView from '../view/productDetailView';
+import productView from '../view/productView';
+import offerView from '../view/offerView';
+import commentView from '../view/commentView';
+import navbar from '../component/navbar';
 
-export class UI {
+export default class UI {
 
     constructor() {
         this._store = new Store;

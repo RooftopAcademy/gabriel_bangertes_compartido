@@ -1,4 +1,4 @@
-import {UI} from './class/UI';
+import UI from './class/UI';
 
 const carrousel: string = '<h2>CARROUSEL</h2>';
 (document.querySelector('.carrousel') as HTMLElement).innerHTML = carrousel;

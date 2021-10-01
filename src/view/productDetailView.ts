@@ -1,6 +1,6 @@
-import {Product} from '../class/Product';
+import Product from '../class/Product';
 
-export function productDetailView(product: Product): string {
+export default function productDetailView(product: Product): string {
     return `
         <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.id}'>
             <div>

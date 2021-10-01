@@ -1,7 +1,7 @@
 import {ProductInterface} from './interfaces';
-import {Product} from './Product';
+import Product from './Product';
 
-export class Catalog {
+export default class Catalog {
 
     constructor() {
         this._productList = [];

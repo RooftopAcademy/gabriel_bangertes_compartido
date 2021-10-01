@@ -1,4 +1,4 @@
-export function navbar() {
+export default function navbar() {
     return `
         <div class="d-flex navbar jc-space-between fw-wrap ai-center">
             <div class="logotype"><a href="#">LOGO</a></div>

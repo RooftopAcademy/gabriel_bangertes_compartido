@@ -1,6 +1,6 @@
-export class User {
+export default class User {
 
-    private _password!: string;
+    // private _password!: string;
 
     constructor() {
     }

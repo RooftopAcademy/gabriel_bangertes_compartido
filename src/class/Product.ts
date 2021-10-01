@@ -1,6 +1,6 @@
 import {CommentInterface} from './interfaces';
 
-export class Product {
+export default class Product {
 
     constructor() {
         this._comments = [];
