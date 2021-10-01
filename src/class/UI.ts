@@ -30,7 +30,9 @@ export class UI {
 
     toggleNavbar(nav: HTMLElement): void {
         Array.from(nav.getElementsByClassName('navbar-item') as HTMLCollection)
-            .forEach((item: HTMLElement) => item.classList.toggle('active'));
+            .forEach((item: HTMLElement) => {
+                item.classList.toggle('active');
+            });
         this.toggleHamburgerIcon(nav.querySelector('.ts-hamburger-icon'));
     }
 
@@ -44,17 +46,24 @@ export class UI {
     }
 
     addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {
-        theOfferList.forEach((offer: Product) => theHtmlElement.innerHTML += offerView(offer));
+        theOfferList.forEach((offer: Product) => {
+            theHtmlElement.innerHTML += offerView(offer);
+        });
     }
 
     addProductViews(theHtmlElement: HTMLElement, theProductList: Product[]) {
-        theProductList.forEach((product: Product) => theHtmlElement.innerHTML += productView(product));
+        theProductList.forEach((product: Product) => {
+            theHtmlElement.innerHTML += productView(product);
+        });
     }
 
     renderDetailView(offerViewElement: HTMLElement) {
-        const offer: Product = this._store.getProductById((offerViewElement.dataset.id) ? +offerViewElement.dataset.id : 0);
+        const offer: Product = this._store.getProductById(
+            (offerViewElement.dataset.id) ? +offerViewElement.dataset.id : 0);
         const main: HTMLElement = document.querySelector('main') as HTMLElement;
         main.innerHTML = productDetailView(offer);
-        offer.comments.forEach((comment: CommentInterface) => main.innerHTML += commentView(comment));
+        offer.comments.forEach((comment: CommentInterface) => {
+            main.innerHTML += commentView(comment);
+        });
     }
 }

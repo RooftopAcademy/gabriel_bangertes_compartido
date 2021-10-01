@@ -19,7 +19,9 @@ export class Store {
     }
 
     addProducts(productList: ProductInterface[]): Product[] {
-        productList.forEach((product: ProductInterface) => this._catalog.addProduct(product));
+        productList.forEach((product: ProductInterface) => {
+            this._catalog.addProduct(product)
+        });
         return this.catalog;
     }
 
