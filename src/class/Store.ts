@@ -5,25 +5,25 @@ import { CommentInterface, ProductInterface } from './interfaces';
 
 export default class Store {
 
-    private _user: User;
+    private user: User;
 
     constructor() {
-        this._catalog = new Catalog;
-        this._user = new User;
+        this.catalog = new Catalog;
+        this.user = new User;
     }
 
-    private _catalog: Catalog;
+    private catalog: Catalog;
 
-    get catalog(): Product[] {
-        return this._catalog.productList;
+    getCatalog(): Product[] {
+        return this.catalog.getProductList();
     }
 
     addProducts(productList: ProductInterface[]): Product[] {
         productList.forEach((product: ProductInterface) => {
-            this._catalog.addProduct(product)
+            this.catalog.addProduct(product)
         });
 
-        return this.catalog;
+        return this.getCatalog();
     }
 
     fetchComments(): void {
@@ -39,6 +39,6 @@ export default class Store {
     }
 
     getProductById(id: number): Product {
-        return this._catalog.findProduct(id);
+        return this.catalog.findProduct(id);
     }
 }

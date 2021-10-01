@@ -2,21 +2,21 @@ import Product from '../class/Product';
 
 export default function productDetailView(product: Product): string {
     return `
-        <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.id}'>
+        <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.getId()}'>
             <div>
-                <img src='${product.img}' class='offer-img' alt="image">
+                <img src='${product.getImg()}' class='offer-img' alt="image">
             </div>
             <div class=''>
-                <h2>${product.title}</h2>
+                <h2>${product.getTitle()}</h2>
             </div>
             <div class=''>
-                <h3>$ ${product.price}</h3>
+                <h3>$ ${product.getPrice()}</h3>
             </div>
             <div class=''>
-                <p>${product.description}</p>
+                <p>${product.getDescription()}</p>
             </div>
             <div>
-                <button class='cart-button' data-id='${product.id}'>AGREGAR AL CARRITO</button>
+                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
             </div>
         </div>
         <div>

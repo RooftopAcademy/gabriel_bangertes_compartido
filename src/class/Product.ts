@@ -3,76 +3,76 @@ import { CommentInterface } from './interfaces';
 export default class Product {
 
     constructor() {
-        this._comments = [];
+        this.comments = [];
     }
 
-    private _id!: number;
+    private id!: number;
 
-    get id(): number {
-        return this._id;
+    getId(): number {
+        return this.id;
     }
 
-    set id(theId: number) {
-        this._id = theId;
+    setId(theId: number) {
+        this.id = theId;
     }
 
-    private _title!: string;
+    private title!: string;
 
-    get title(): string {
-        return this._title;
+    getTitle(): string {
+        return this.title;
     }
 
-    set title(theTitle: string) {
-        this._title = theTitle;
+    setTitle(theTitle: string) {
+        this.title = theTitle;
     }
 
-    private _description!: string;
+    private description!: string;
 
-    get description(): string {
-        return this._description;
+    getDescription(): string {
+        return this.description;
     }
 
-    set description(theDescription: string) {
-        this._description = theDescription;
+    setDescription(theDescription: string) {
+        this.description = theDescription;
     }
 
-    private _price!: number;
+    private price!: number;
 
-    get price(): number {
-        return this._price;
+    getPrice(): number {
+        return this.price;
     }
 
-    set price(thePrice: number) {
-        this._price = thePrice;
+    setPrice(thePrice: number) {
+        this.price = thePrice;
     }
 
-    private _img!: string;
+    private img!: string;
 
-    get img(): string {
-        return this._img;
+    getImg(): string {
+        return this.img;
     }
 
-    set img(theImgPath: string) {
-        this._img = theImgPath;
+    setImg(theImgPath: string) {
+        this.img = theImgPath;
     }
 
-    private _quantity!: number;
+    private quantity!: number;
 
-    get quantity(): number {
-        return this._quantity;
+    getQuantity(): number {
+        return this.quantity;
     }
 
-    set quantity(theQuantity: number) {
-        this._quantity = theQuantity;
+    setQuantity(theQuantity: number) {
+        this.quantity = theQuantity;
     }
 
-    private _comments!: CommentInterface[];
+    private comments!: CommentInterface[];
 
-    get comments(): CommentInterface[] {
-        return [...this._comments];
+    getComments(): CommentInterface[] {
+        return [...this.comments];
     }
 
     addComment(theComment: CommentInterface): void {
-        this._comments.push(theComment);
+        this.comments.push(theComment);
     }
 }

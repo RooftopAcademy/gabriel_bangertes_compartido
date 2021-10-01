@@ -4,33 +4,33 @@ import Product from './Product';
 export default class Catalog {
 
     constructor() {
-        this._productList = [];
+        this.productList = [];
     }
 
-    private _productList: Product[];
+    private productList: Product[];
 
-    get productList(): Product[] {
-        return [...this._productList];
+    getProductList(): Product[] {
+        return [...this.productList];
     }
 
     addProduct(product: ProductInterface): void {
         const newProduct: Product = new Product;
-        newProduct.id = product.id;
-        newProduct.title = product.title;
-        newProduct.description = product.description;
-        newProduct.price = product.price;
-        newProduct.img = product.img;
-        newProduct.quantity = product.quantity;
-        this._productList.push(newProduct);
+        newProduct.setId(product.id);
+        newProduct.setTitle(product.title);
+        newProduct.setDescription(product.description);
+        newProduct.setPrice(product.price);
+        newProduct.setImg(product.img);
+        newProduct.setQuantity(product.quantity);
+        this.productList.push(newProduct);
     }
 
     removeProduct(product: Product): void {
-        if (this._productList.includes(product)) {
-            this._productList.slice(this._productList.indexOf(product), 1);
+        if (this.productList.includes(product)) {
+            this.productList.slice(this.productList.indexOf(product), 1);
         }
     }
 
     findProduct(id: number): Product {
-        return this._productList.find((product: Product) => product.id == id) as Product;
+        return this.productList.find((product: Product) => product.getId() == id) as Product;
     }
 }

@@ -26,7 +26,7 @@ function addNavbarActions(navbar: HTMLElement): void {
             </div>
         </div>`;
     const products: HTMLElement = (main.querySelector('.products') as HTMLElement);
-    ui.addProductViews(products, ui.store.catalog);
+    ui.addProductViews(products, ui.getStore().getCatalog());
     productButton();
     ui.toggleNavbar(nav);
 });
@@ -44,7 +44,7 @@ function addNavbarActions(navbar: HTMLElement): void {
             </div>
         </div>`;
     const offers: HTMLElement = (main.querySelector('.offers') as HTMLElement);
-    ui.addOfferViews(offers, ui.store.catalog);
+    ui.addOfferViews(offers, ui.getStore().getCatalog());
     productButton();
     ui.toggleNavbar(nav);
 });
@@ -58,4 +58,4 @@ function productButton(): void {
         ));
 }
 
-ui.store.fetchComments();
+ui.getStore().fetchComments();

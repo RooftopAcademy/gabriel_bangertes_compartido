@@ -10,13 +10,13 @@ import navbar from '../component/navbar';
 export default class UI {
 
     constructor() {
-        this._store = new Store;
+        this.store = new Store;
     }
 
-    private _store: Store;
+    private store: Store;
 
-    get store() {
-        return this._store;
+    getStore() {
+        return this.store;
     }
 
     renderNavbar(nav: HTMLElement): void {
@@ -41,7 +41,7 @@ export default class UI {
         fetch('products.json')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((json: ProductInterface[]) => {
-                this.addOfferViews(offers, this._store.addProducts(json));
+                this.addOfferViews(offers, this.store.addProducts(json));
                 productButton();
             })
     }
@@ -59,12 +59,12 @@ export default class UI {
     }
 
     renderDetailView(offerViewElement: HTMLElement) {
-        const offer: Product = this._store.getProductById(
+        const offer: Product = this.store.getProductById(
             (offerViewElement.dataset.id) ? +offerViewElement.dataset.id : 0);
         const main: HTMLElement = document.querySelector('main') as HTMLElement;
         main.innerHTML = productDetailView(offer);
 
-        offer.comments.forEach((comment: CommentInterface) => {
+        offer.getComments().forEach((comment: CommentInterface) => {
             main.innerHTML += commentView(comment);
         });
     }
