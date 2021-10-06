@@ -1,6 +1,6 @@
-import Product from '../class/Product';
+import Product from '../entity/Product';
 
-export default function offerView(offer: Product): string {
+export default function offerComponent(offer: Product): string {
     return `
         <div class='d-flex offers-item fd-column jc-space-evenly ai-center' data-id='${offer.getId()}'>
             <img src='${offer.getImg()}' class='offer-img' alt="imagen">

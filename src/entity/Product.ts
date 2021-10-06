@@ -1,4 +1,4 @@
-import { CommentInterface } from './interfaces';
+import CommentInterface from '../interface/CommentInterface';
 
 export default class Product {
 

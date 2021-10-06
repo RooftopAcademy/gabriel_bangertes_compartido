@@ -1,6 +1,6 @@
-import Product from '../class/Product';
+import Product from '../entity/Product';
 
-export default function productView(product: Product): string {
+export default function productComponent(product: Product): string {
     return `
         <div class='d-flex products-item jc-space-evenly ai-center' data-id='${product.getId()}'>
             <div>

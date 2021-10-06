@@ -1,11 +1,14 @@
 import Store from './Store';
 import Product from './Product';
-import { CommentInterface, ProductInterface } from './interfaces';
+import ProductInterface from '../interface/ProductInterface';
+import CommentInterface from '../interface/CommentInterface';
 import productDetailView from '../view/productDetailView';
-import productView from '../view/productView';
-import offerView from '../view/offerView';
-import commentView from '../view/commentView';
-import navbar from '../component/navbar';
+import productComponent from '../component/productComponent';
+import offerComponent from '../component/offerComponent';
+import commentComponent from '../component/commentComponent';
+import navbarComponent from '../component/navbarComponent';
+import carrouselComponent from "../component/carrouselComponent";
+import footerComponent from "../component/footerComponent";
 
 export default class UI {
 
@@ -20,7 +23,7 @@ export default class UI {
     }
 
     renderNavbar(nav: HTMLElement): void {
-        nav.innerHTML = navbar();
+        nav.innerHTML = navbarComponent();
     }
 
     toggleHamburgerIcon(iconElement: HTMLElement): void {
@@ -37,6 +40,14 @@ export default class UI {
         this.toggleHamburgerIcon(nav.querySelector('.ts-hamburger-icon'));
     }
 
+    renderCarrousel(carrousel: HTMLElement): void {
+        carrousel.innerHTML = carrouselComponent();
+    }
+
+    renderFooter(footer: HTMLElement): void {
+        footer.innerHTML = footerComponent();
+    }
+
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
         fetch('products.json')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
@@ -48,13 +59,13 @@ export default class UI {
 
     addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {
         theOfferList.forEach((offer: Product) => {
-            theHtmlElement.innerHTML += offerView(offer);
+            theHtmlElement.innerHTML += offerComponent(offer);
         });
     }
 
     addProductViews(theHtmlElement: HTMLElement, theProductList: Product[]) {
         theProductList.forEach((product: Product) => {
-            theHtmlElement.innerHTML += productView(product);
+            theHtmlElement.innerHTML += productComponent(product);
         });
     }
 
@@ -65,7 +76,7 @@ export default class UI {
         main.innerHTML = productDetailView(offer);
 
         offer.getComments().forEach((comment: CommentInterface) => {
-            main.innerHTML += commentView(comment);
+            main.innerHTML += commentComponent(comment);
         });
     }
 }
