@@ -1,72 +1,78 @@
-import { CommentInterface } from "./interfaces";
+import { CommentInterface } from './interfaces';
 
-export class Product {
-
-    private _id!: number;
-    private _title!: string;
-    private _description!: string;
-    private _price!: number;
-    private _img!: string;
-    private _quantity!: number;
-    private _comments!: CommentInterface[];
+export default class Product {
 
     constructor() {
-        this._comments = [];
+        this.comments = [];
+    }
+
+    private id!: number;
+
+    getId(): number {
+        return this.id;
+    }
+
+    setId(theId: number) {
+        this.id = theId;
+    }
+
+    private title!: string;
+
+    getTitle(): string {
+        return this.title;
+    }
+
+    setTitle(theTitle: string) {
+        this.title = theTitle;
+    }
+
+    private description!: string;
+
+    getDescription(): string {
+        return this.description;
+    }
+
+    setDescription(theDescription: string) {
+        this.description = theDescription;
+    }
+
+    private price!: number;
+
+    getPrice(): number {
+        return this.price;
+    }
+
+    setPrice(thePrice: number) {
+        this.price = thePrice;
+    }
+
+    private img!: string;
+
+    getImg(): string {
+        return this.img;
+    }
+
+    setImg(theImgPath: string) {
+        this.img = theImgPath;
+    }
+
+    private quantity!: number;
+
+    getQuantity(): number {
+        return this.quantity;
+    }
+
+    setQuantity(theQuantity: number) {
+        this.quantity = theQuantity;
+    }
+
+    private comments!: CommentInterface[];
+
+    getComments(): CommentInterface[] {
+        return [...this.comments];
     }
 
     addComment(theComment: CommentInterface): void {
-        this._comments.push(theComment);
-    }
-
-    get comments(): CommentInterface[] {
-        return this._comments.slice();
-    }
-
-    set id(theId: number) {
-        this._id = theId;
-    }
-
-    get id(): number {
-        return this._id;
-    }
-
-    set title(theTitle: string) {
-        this._title = theTitle;
-    }
-
-    get title(): string {
-        return this._title;
-    }
-
-    set description(theDescription: string) {
-        this._description = theDescription;
-    }
-
-    get description(): string {
-        return this._description;
-    }
-
-    set price(thePrice: number) {
-        this._price = thePrice;
-    }
-
-    get price(): number {
-        return this._price;
-    }
-
-    set img(theImgPath: string) {
-        this._img = theImgPath;
-    }
-
-    get img(): string {
-        return this._img;
-    }
-
-    set quantity(theQuantity: number) {
-        this._quantity = theQuantity;
-    }
-
-    get quantity(): number {
-        return this._quantity;
+        this.comments.push(theComment);
     }
 }

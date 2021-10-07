@@ -1,40 +1,44 @@
-import { Catalog } from "./Catalog";
-import { User } from "./User";
-import { Product } from "./Product";
-import { ProductInterface, CommentInterface } from "./interfaces";
+import Catalog from './Catalog';
+import User from './User';
+import Product from './Product';
+import { CommentInterface, ProductInterface } from './interfaces';
 
-export class Store {
+export default class Store {
 
-    private _catalog: Catalog;
-    private _user: User;
+    private user: User;
 
     constructor() {
-        this._catalog = new Catalog;
-        this._user = new User;
+        this.catalog = new Catalog;
+        this.user = new User;
+    }
+
+    private catalog: Catalog;
+
+    getCatalog(): Product[] {
+        return this.catalog.getProductList();
     }
 
     addProducts(productList: ProductInterface[]): Product[] {
-        productList.forEach((product: ProductInterface) => this._catalog.addProduct(product));
-        return this.catalog;
+        productList.forEach((product: ProductInterface) => {
+            this.catalog.addProduct(product)
+        });
+
+        return this.getCatalog();
     }
 
     fetchComments(): void {
-        fetch("https://jsonplaceholder.typicode.com/comments")
-        .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
-        .then((json: CommentInterface[]) => {
-            json.forEach((comment: CommentInterface) => {
-                if (this.getProductById(comment.postId)) {
-                    this.getProductById(comment.postId).addComment(comment);
-                }
+        fetch('https://jsonplaceholder.typicode.com/comments')
+            .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
+            .then((json: CommentInterface[]) => {
+                json.forEach((comment: CommentInterface) => {
+                    if (this.getProductById(comment.postId)) {
+                        this.getProductById(comment.postId).addComment(comment);
+                    }
+                })
             })
-        })
-    }
-
-    get catalog(): Product[] {
-        return this._catalog.productList;
     }
 
     getProductById(id: number): Product {
-        return this._catalog.findProduct(id);
+        return this.catalog.findProduct(id);
     }
 }

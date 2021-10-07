@@ -1,34 +1,37 @@
-export class User {
+export default class User {
 
-    private _id!: number;
-    private _username!: string;
-    private _password!: string;
-    private _email!: string;
+    // private password!: string;
 
     constructor() {
     }
 
-    get id() {
-        return this._id;
-    } 
+    private id!: number;
 
-    get username() {
-        return this._username;
-    } 
-
-    get email() {
-        return this._email;
-    } 
-
-    set id(theId) {
-        this._id = theId;
+    getId() {
+        return this.id;
     }
 
-    set username(theUsername) {
-        this._username = theUsername;
+    setId(theId: number) {
+        this.id = theId;
     }
 
-    set email(theEmail) {
-        this._email = theEmail;
+    private username!: string;
+
+    getUsername() {
+        return this.username;
+    }
+
+    setUsername(theUsername: string) {
+        this.username = theUsername;
+    }
+
+    private email!: string;
+
+    getEmail() {
+        return this.email;
+    }
+
+    setEmail(theEmail: string) {
+        this.email = theEmail;
     }
 }

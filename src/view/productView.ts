@@ -1,17 +1,17 @@
-import { Product } from "../class/Product";
+import Product from '../class/Product';
 
-export function productView(product: Product): string {
+export default function productView(product: Product): string {
     return `
-        <div class='d-flex products-item jc-space-evenly ai-center' data-id='${product.id}'>
+        <div class='d-flex products-item jc-space-evenly ai-center' data-id='${product.getId()}'>
             <div>
-                <img src='${product.img}' class='product-img'>
+                <img src='${product.getImg()}' class='product-img' alt="imagen">
             </div>
             <div class='price'>
-                <h2>$ ${product.price}</h2>
-                <p>${product.title}</p>
+                <h2>$ ${product.getPrice()}</h2>
+                <p>${product.getTitle()}</p>
             </div>
             <div>
-                <button class="cart-button" data-id='${product.id}'>AGREGAR AL CARRITO</button>
+                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
             </div>
         </div>
         `;
