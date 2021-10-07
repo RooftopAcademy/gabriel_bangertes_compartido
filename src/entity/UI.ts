@@ -12,18 +12,37 @@ import footerComponent from "../component/footerComponent";
 
 export default class UI {
 
-    constructor() {
+    constructor(theDocument: Document) {
         this.store = new Store;
+        this.app = theDocument;
+        this.nav = theDocument.querySelector('nav');
+        this.carrousel = theDocument.querySelector('.carrousel');
+        this.main = theDocument.querySelector('main');
+        this.footer = theDocument.querySelector('.footer');
+
+        this.render(this.carrousel, carrouselComponent);
+        this.render(this.footer, footerComponent);
+        this.fetchProducts(
+            this.app.querySelector('.offers'),
+            this.productButton
+        )
+        this.render(this.nav, navbarComponent);
+        this.addNavbarActions(this.nav);
     }
 
     private store: Store;
+    private app: Document;
+    private nav: HTMLElement;
+    private carrousel: HTMLElement;
+    private main: HTMLElement;
+    private footer: HTMLElement;
 
     getStore() {
         return this.store;
     }
 
-    renderNavbar(nav: HTMLElement): void {
-        nav.innerHTML = navbarComponent();
+    render(element: HTMLElement, component: () => string): void {
+        element.innerHTML = component();
     }
 
     toggleHamburgerIcon(iconElement: HTMLElement): void {
@@ -31,7 +50,7 @@ export default class UI {
         iconElement.classList.toggle('fa-times');
     }
 
-    toggleNavbar(nav: HTMLElement): void {
+    toggleNavbar(nav: HTMLElement = this.nav): void {
         Array.from(nav.getElementsByClassName('navbar-item') as HTMLCollection)
             .forEach((item: HTMLElement) => {
                 item.classList.toggle('active');
@@ -40,12 +59,10 @@ export default class UI {
         this.toggleHamburgerIcon(nav.querySelector('.ts-hamburger-icon'));
     }
 
-    renderCarrousel(carrousel: HTMLElement): void {
-        carrousel.innerHTML = carrouselComponent();
-    }
-
-    renderFooter(footer: HTMLElement): void {
-        footer.innerHTML = footerComponent();
+    addNavbarActions(navbar: HTMLElement): void {
+        (navbar.querySelector('.menu') as HTMLElement)
+            .addEventListener('click',
+                () => this.toggleNavbar(navbar as HTMLElement));
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
@@ -55,6 +72,14 @@ export default class UI {
                 this.addOfferViews(offers, this.store.addProducts(json));
                 productButton();
             })
+    }
+
+   productButton(): void {
+        Array.from(document.querySelectorAll('.offers-item, .products-item') as NodeListOf<HTMLElement>)
+            .forEach((offerView) => offerView.addEventListener(
+                'click',
+                () => this.renderDetailView(offerView as HTMLElement)
+            ));
     }
 
     addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {

@@ -1,28 +1,6 @@
 import UI from './entity/UI';
 
-// const carrousel: string = '<h2>CARROUSEL</h2>';
-// (document.querySelector('.carrousel') as HTMLElement).innerHTML = carrousel;
-const ui: UI = new UI;
-
-const nav: HTMLElement = document.querySelector('nav') as HTMLElement;
-const carrousel: HTMLElement = document.querySelector('.carrousel') as HTMLElement;
-const offers: HTMLElement = document.querySelector('.offers') as HTMLElement;
-const footer: HTMLElement = document.querySelector('.footer') as HTMLElement;
-
-ui.renderCarrousel(carrousel);
-ui.renderFooter(footer);
-
-ui.fetchProducts(offers, productButton);
-
-ui.renderNavbar(nav);
-addNavbarActions(nav);
-
-// NAVBAR
-function addNavbarActions(navbar: HTMLElement): void {
-    (navbar.querySelector('.menu') as HTMLElement)
-        .addEventListener('click',
-            () => ui.toggleNavbar(navbar as HTMLElement));
-}
+const ui: UI = new UI(document);
 
 // PRODUCTS BUTTON
 (document.querySelector('.js-products') as HTMLElement).addEventListener('click', function () {
@@ -35,8 +13,8 @@ function addNavbarActions(navbar: HTMLElement): void {
         </div>`;
     const products: HTMLElement = (main.querySelector('.products') as HTMLElement);
     ui.addProductViews(products, ui.getStore().getCatalog());
-    productButton();
-    ui.toggleNavbar(nav);
+    ui.productButton();
+    ui.toggleNavbar();
 });
 
 // HOME BUTTON
@@ -53,17 +31,8 @@ function addNavbarActions(navbar: HTMLElement): void {
         </div>`;
     const offers: HTMLElement = (main.querySelector('.offers') as HTMLElement);
     ui.addOfferViews(offers, ui.getStore().getCatalog());
-    productButton();
-    ui.toggleNavbar(nav);
+    ui.productButton();
+    ui.toggleNavbar();
 });
-
-// PRODUCT DETAIL
-function productButton(): void {
-    Array.from(document.querySelectorAll('.offers-item, .products-item') as NodeListOf<HTMLElement>)
-        .forEach((offerView) => offerView.addEventListener(
-            'click',
-            () => ui.renderDetailView(offerView as HTMLElement)
-        ));
-}
 
 ui.getStore().fetchComments();
