@@ -1,6 +1,6 @@
-import {CommentInterface} from '../class/interfaces'
+import CommentInterface from '../interface/CommentInterface';
 
-export default function commentView(comment: CommentInterface): string {
+export default function commentComponent(comment: CommentInterface): string {
     return `
     <div class='d-flex fd-column comment'>
         <div><b>${comment.name}</b> - <i>${comment.email}</i>

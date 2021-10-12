@@ -1,11 +1,19 @@
-import UI from './class/UI';
+import UI from './entity/UI';
 
-const carrousel: string = '<h2>CARROUSEL</h2>';
-(document.querySelector('.carrousel') as HTMLElement).innerHTML = carrousel;
+// const carrousel: string = '<h2>CARROUSEL</h2>';
+// (document.querySelector('.carrousel') as HTMLElement).innerHTML = carrousel;
 const ui: UI = new UI;
-const offers: HTMLElement = document.querySelector('.offers') as HTMLElement;
-ui.fetchProducts(offers, productButton);
+
 const nav: HTMLElement = document.querySelector('nav') as HTMLElement;
+const carrousel: HTMLElement = document.querySelector('.carrousel') as HTMLElement;
+const offers: HTMLElement = document.querySelector('.offers') as HTMLElement;
+const footer: HTMLElement = document.querySelector('.footer') as HTMLElement;
+
+ui.renderCarrousel(carrousel);
+ui.renderFooter(footer);
+
+ui.fetchProducts(offers, productButton);
+
 ui.renderNavbar(nav);
 addNavbarActions(nav);
 

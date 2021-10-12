@@ -1,4 +1,4 @@
-import Product from '../class/Product';
+import Product from '../entity/Product';
 
 export default function productDetailView(product: Product): string {
     return `
