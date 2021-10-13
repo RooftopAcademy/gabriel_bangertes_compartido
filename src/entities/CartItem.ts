@@ -22,4 +22,8 @@ export default class CartItem {
     getQuantity(): number {
         return this.quantity;
     }
+
+    getProduct(): Product {
+        return this.product;
+    }
 }
