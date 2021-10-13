@@ -1,8 +1,8 @@
 import Catalog from './Catalog';
 import User from './User';
 import Product from './Product';
-import CommentInterface from '../interface/CommentInterface';
-import ProductInterface from '../interface/ProductInterface';
+import CommentInterface from '../interfaces/CommentInterface';
+import ProductInterface from '../interfaces/ProductInterface';
 
 export default class Store {
 

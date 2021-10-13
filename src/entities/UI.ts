@@ -1,14 +1,14 @@
 import Store from './Store';
 import Product from './Product';
-import ProductInterface from '../interface/ProductInterface';
-import CommentInterface from '../interface/CommentInterface';
-import productDetailView from '../view/productDetailView';
-import productComponent from '../component/productComponent';
-import offerComponent from '../component/offerComponent';
-import commentComponent from '../component/commentComponent';
-import navbarComponent from '../component/navbarComponent';
-import carrouselComponent from "../component/carrouselComponent";
-import footerComponent from "../component/footerComponent";
+import ProductInterface from '../interfaces/ProductInterface';
+import CommentInterface from '../interfaces/CommentInterface';
+import productDetailView from '../views/productDetailView';
+import productComponent from '../components/productComponent';
+import offerComponent from '../components/offerComponent';
+import commentComponent from '../components/commentComponent';
+import navbarComponent from '../components/navbarComponent';
+import carrouselComponent from "../components/carrouselComponent";
+import footerComponent from "../components/footerComponent";
 
 export default class UI {
 

@@ -1,4 +1,4 @@
-import UI from './entity/UI';
+import UI from './entities/UI';
 
 const ui: UI = new UI(document);
 
