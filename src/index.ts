@@ -12,7 +12,7 @@ const ui: UI = new UI(document);
             </div>
         </div>`;
     const products: HTMLElement = (main.querySelector('.products') as HTMLElement);
-    ui.addProductViews(products, ui.getStore().getCatalog());
+    ui.addProductComponents(products, ui.getStore().getCatalog());
     ui.productButton();
     ui.toggleNavbar();
 });
@@ -30,7 +30,7 @@ const ui: UI = new UI(document);
             </div>
         </div>`;
     const offers: HTMLElement = (main.querySelector('.offers') as HTMLElement);
-    ui.addOfferViews(offers, ui.getStore().getCatalog());
+    ui.addOfferComponents(offers, ui.getStore().getCatalog());
     ui.productButton();
     ui.toggleNavbar();
 });

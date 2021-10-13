@@ -21,12 +21,16 @@ export default class UI {
         this.footer = theDocument.querySelector('.footer');
 
         this.render(this.carrousel, carrouselComponent);
+
         this.render(this.footer, footerComponent);
+
         this.fetchProducts(
             this.app.querySelector('.offers'),
             this.productButton
         )
+
         this.render(this.nav, navbarComponent);
+
         this.addNavbarActions(this.nav);
     }
 
@@ -69,7 +73,7 @@ export default class UI {
         fetch('products.json')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((json: ProductInterface[]) => {
-                this.addOfferViews(offers, this.store.addProducts(json));
+                this.addOfferComponents(offers, this.store.addProducts(json));
                 productButton();
             })
     }
@@ -82,13 +86,13 @@ export default class UI {
             ));
     }
 
-    addOfferViews(theHtmlElement: HTMLElement, theOfferList: Product[]) {
+    addOfferComponents(theHtmlElement: HTMLElement, theOfferList: Product[]) {
         theOfferList.forEach((offer: Product) => {
             theHtmlElement.innerHTML += offerComponent(offer);
         });
     }
 
-    addProductViews(theHtmlElement: HTMLElement, theProductList: Product[]) {
+    addProductComponents(theHtmlElement: HTMLElement, theProductList: Product[]) {
         theProductList.forEach((product: Product) => {
             theHtmlElement.innerHTML += productComponent(product);
         });
@@ -97,11 +101,10 @@ export default class UI {
     renderDetailView(offerViewElement: HTMLElement) {
         const offer: Product = this.store.getProductById(
             (offerViewElement.dataset.id) ? +offerViewElement.dataset.id : 0);
-        const main: HTMLElement = document.querySelector('main') as HTMLElement;
-        main.innerHTML = productDetailView(offer);
+        this.main.innerHTML = productDetailView(offer);
 
         offer.getComments().forEach((comment: CommentInterface) => {
-            main.innerHTML += commentComponent(comment);
+            this.main.innerHTML += commentComponent(comment);
         });
     }
 }
