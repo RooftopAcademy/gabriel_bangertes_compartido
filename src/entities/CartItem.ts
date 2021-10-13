@@ -26,4 +26,14 @@ export default class CartItem {
     getProduct(): Product {
         return this.product;
     }
+
+    private id: number;
+
+    getId(): number {
+        return this.id;
+    }
+
+    setId(theId: number) {
+        this.id = theId;
+    }
 }
