@@ -3,13 +3,13 @@ import Product from './Product';
 import ProductInterface from '../interfaces/ProductInterface';
 import CommentInterface from '../interfaces/CommentInterface';
 import productDetailView from '../views/productDetailView';
-import productComponent from '../components/productComponent';
 import offerComponent from '../components/offerComponent';
 import commentComponent from '../components/commentComponent';
 import navbarComponent from '../components/navbarComponent';
 import carrouselComponent from "../components/carrouselComponent";
 import footerComponent from "../components/footerComponent";
 import cartView from "../views/cartView";
+import cartItemComponent from "../components/cartItemComponent";
 
 export default class UI {
 
@@ -74,7 +74,7 @@ export default class UI {
         fetch('products.json')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((json: ProductInterface[]) => {
-                this.addOfferComponents(offers, this.store.addProducts(json));
+                this.addComponents(offers, offerComponent, this.store.addProducts(json));
                 productButton();
             })
     }
@@ -87,16 +87,10 @@ export default class UI {
             ));
     }
 
-    addOfferComponents(theHtmlElement: HTMLElement, theOfferList: Product[]) {
-        theOfferList.forEach((offer: Product) => {
-            theHtmlElement.innerHTML += offerComponent(offer);
-        });
-    }
-
-    addProductComponents(theHtmlElement: HTMLElement, theProductList: Product[]) {
-        theProductList.forEach((product: Product) => {
-            theHtmlElement.innerHTML += productComponent(product);
-        });
+    addComponents(theHTMLElement: HTMLElement, component: (item: object) => string, list: object[]) {
+        list.forEach((item: object) => {
+            theHTMLElement.innerHTML += component(item);
+        })
     }
 
     renderDetailView(offerViewElement: HTMLElement) {
@@ -109,16 +103,35 @@ export default class UI {
         });
 
         this.attachGoToCartButtonActions();
+        this.attachAddToCartButtonActions();
     }
 
     goToCartButtonListener(): () => void {
-        return () => this.render(this.main, cartView(this.store.getCart()));
+        return () => {
+            this.render(this.main, cartView(this.store.getCart()));
+            const cartItems: HTMLElement = this.main.querySelector('.cart-items');
+            this.addComponents(cartItems, cartItemComponent, this.store.getCart().getItems())
+        }
     }
 
     attachGoToCartButtonActions(): void {
         this.main.querySelector('.cart-button').addEventListener(
             'click',
             this.goToCartButtonListener()
+        )
+    }
+
+    addToCartButtonListener(id: number): () => void {
+        return () => this.store.getCart().addItem(
+            this.store.getProductById(id)
+        );
+    }
+
+    attachAddToCartButtonActions(): void {
+        const button: HTMLElement = this.main.querySelector('.add-to-cart-button') as HTMLElement;
+        button.addEventListener(
+            'click',
+            this.addToCartButtonListener(+button.dataset.id)
         )
     }
 }
