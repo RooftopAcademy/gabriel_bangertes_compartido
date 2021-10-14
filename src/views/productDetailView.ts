@@ -16,7 +16,10 @@ export default function productDetailView(product: Product): string {
                 <p>${product.getDescription()}</p>
             </div>
             <div>
-                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+                <button class='add-to-cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+            </div>
+            <div>
+                <button class='cart-button'>VER CARRITO</button>
             </div>
         </div>
         <div>
