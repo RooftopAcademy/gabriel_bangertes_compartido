@@ -21,16 +21,16 @@ export default class UI {
         this.main = theDocument.querySelector('main');
         this.footer = theDocument.querySelector('.footer');
 
-        this.render(this.carrousel, carrouselComponent);
+        this.render(this.carrousel, carrouselComponent());
 
-        this.render(this.footer, footerComponent);
+        this.render(this.footer, footerComponent());
 
         this.fetchProducts(
             this.app.querySelector('.offers'),
             this.productButton
         )
 
-        this.render(this.nav, navbarComponent);
+        this.render(this.nav, navbarComponent());
 
         this.addNavbarActions(this.nav);
     }
@@ -46,8 +46,8 @@ export default class UI {
         return this.store;
     }
 
-    render(element: HTMLElement, component: (arg?: object) => string): void {
-        element.innerHTML = component();
+    render(element: HTMLElement, component: string): void {
+        element.innerHTML = component;
     }
 
     toggleHamburgerIcon(iconElement: HTMLElement): void {
@@ -107,16 +107,18 @@ export default class UI {
         offer.getComments().forEach((comment: CommentInterface) => {
             this.main.innerHTML += commentComponent(comment);
         });
+
+        this.attachGoToCartButtonActions();
     }
 
-    addToCartButtonListener() {
-        this.render(this.main, cartView);
+    goToCartButtonListener(): () => void {
+        return () => this.render(this.main, cartView(this.store.getCart()));
     }
 
-    attachAddToCartButtonActions(): void {
+    attachGoToCartButtonActions(): void {
         this.main.querySelector('.cart-button').addEventListener(
             'click',
-            this.addToCartButtonListener
+            this.goToCartButtonListener()
         )
     }
 }
