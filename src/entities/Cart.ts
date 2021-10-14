@@ -9,6 +9,10 @@ export default class Cart {
         this.items = [];
     }
 
+    getItems(): CartItem[] {
+        return this.items;
+    }
+
     addItem(product: Product): void {
         if (this.getProducts().includes(product)) {
             this.getItemByProduct(product).increaseQuantity();
