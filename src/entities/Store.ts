@@ -3,13 +3,16 @@ import User from './User';
 import Product from './Product';
 import CommentInterface from '../interfaces/CommentInterface';
 import ProductInterface from '../interfaces/ProductInterface';
+import Cart from "./Cart";
 
 export default class Store {
 
     private user: User;
+    private cart: Cart;
 
     constructor() {
         this.catalog = new Catalog;
+        this.cart = new Cart();
         this.user = new User;
     }
 
@@ -41,5 +44,9 @@ export default class Store {
 
     getProductById(id: number): Product {
         return this.catalog.findProduct(id);
+    }
+
+    getCart(): Cart {
+        return this.cart;
     }
 }
