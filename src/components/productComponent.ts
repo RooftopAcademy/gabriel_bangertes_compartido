@@ -11,7 +11,7 @@ export default function productComponent(product: Product): string {
                 <p>${product.getTitle()}</p>
             </div>
             <div>
-                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+                <button class='cart-button button' data-id='${product.getId()}'>COMPRAR</button>
             </div>
         </div>
         `;

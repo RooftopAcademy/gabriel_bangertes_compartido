@@ -5,7 +5,7 @@ export default function cartView(cart: Cart): string {
         <div class="d-flex fd-column">
             <div class="cart-items"></div>
             <div class="check-out-button">
-                <button>CONTINUAR COMPRA</button>
+                <button class="button">CONTINUAR COMPRA</button>
             </div>
         </div>
 `;

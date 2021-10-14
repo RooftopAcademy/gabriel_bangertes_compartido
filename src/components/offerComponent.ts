@@ -7,7 +7,7 @@ export default function offerComponent(offer: Product): string {
             <div class='price'>
                 <h2>$ ${offer.getPrice()}</h2>
                 <p>${offer.getTitle()}</p>
-                <button class='cart-button'>AGREGAR AL CARRITO</button>
+                <button class='cart-button'>COMPRAR</button>
             </div>
         </div>
         `;

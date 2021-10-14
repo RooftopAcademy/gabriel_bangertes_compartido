@@ -179,7 +179,7 @@ a:hover {
   box-shadow: 2px 2px 2px #e5e9f0;
 }
 
-.cart-button {
+.button {
   border-radius: 0.25em;
   border: 1px solid #e5e9f0;
   margin: 3px;
@@ -189,7 +189,7 @@ a:hover {
   background-color: #A3BE8C;
 }
 
-.cart-button:hover {
+.button:hover {
   box-shadow: 5px 5px 5px #e5e9f0;
   border: 2px solid #D8DEE9;
 }
