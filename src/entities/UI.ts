@@ -9,6 +9,7 @@ import commentComponent from '../components/commentComponent';
 import navbarComponent from '../components/navbarComponent';
 import carrouselComponent from "../components/carrouselComponent";
 import footerComponent from "../components/footerComponent";
+import cartView from "../views/cartView";
 
 export default class UI {
 
@@ -45,7 +46,7 @@ export default class UI {
         return this.store;
     }
 
-    render(element: HTMLElement, component: () => string): void {
+    render(element: HTMLElement, component: (arg?: object) => string): void {
         element.innerHTML = component();
     }
 
@@ -106,5 +107,16 @@ export default class UI {
         offer.getComments().forEach((comment: CommentInterface) => {
             this.main.innerHTML += commentComponent(comment);
         });
+    }
+
+    addToCartButtonListener() {
+        this.render(this.main, cartView);
+    }
+
+    attachAddToCartButtonActions(): void {
+        this.main.querySelector('.cart-button').addEventListener(
+            'click',
+            this.addToCartButtonListener
+        )
     }
 }
