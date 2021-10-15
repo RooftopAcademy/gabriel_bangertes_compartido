@@ -27,7 +27,7 @@ export default class Cart {
     }
 
     removeItem(itemToRemove: CartItem): void {
-        this.items = this.items.filter((item: CartItem) => item !== itemToRemove);
+        this.removeItemByProduct(itemToRemove.getProduct());
     }
 
     removeItemByProduct(product: Product): void {
