@@ -197,6 +197,15 @@ a:hover {
   height: 20vh;
 }
 
+.footer-item {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.footer-title {
+  font-weight: bold;
+}
+
 .product-img {
   height: 10vh;
   object-fit: cover;
