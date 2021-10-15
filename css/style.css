@@ -36,6 +36,10 @@
   justify-content: space-evenly;
 }
 
+.jc-flex-end {
+  justify-content: flex-end;
+}
+
 .fw-wrap {
   flex-wrap: wrap;
 }
@@ -50,6 +54,14 @@
 
 .ac-flex-start {
     align-content: flex-start;
+}
+
+.bg-color {
+  background-color: #eceff4;
+}
+
+.w-95 {
+  width: 95%;
 }
 
 body {
@@ -121,7 +133,16 @@ a:hover {
 .products-item {
   background-color: #fff;
   margin: 3px;
-  width: 100%;
+  width: 95%;
+  height: auto;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px 2px #e5e9f0;
+  padding: 2px;
+}
+
+.price {
+  background-color: #fff;
+  margin:  3px;
   height: auto;
   border-radius: 0.25em;
   box-shadow: 2px 2px 2px #e5e9f0;
@@ -153,7 +174,7 @@ a:hover {
   border: 2px solid #D8DEE9;
 }
 
-.price {
+.price-card {
   padding: 3px;
 }
 
