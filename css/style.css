@@ -153,6 +153,16 @@ a:hover {
   padding: 2px;
 }
 
+.messege {
+  background-color: #A3BE8C;
+  margin:  3px;
+  height: auto;
+  width: 95%;
+  border-radius: 0.25em;
+  box-shadow: 2px 2px 2px #e5e9f0;
+  padding: 2px;
+}
+
 .cart-items {
   width: 90%;
 }
