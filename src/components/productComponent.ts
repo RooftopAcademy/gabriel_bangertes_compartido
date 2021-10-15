@@ -6,7 +6,7 @@ export default function productComponent(product: Product): string {
             <div>
                 <img src='${product.getImg()}' class='product-img' alt="imagen">
             </div>
-            <div class='price'>
+            <div class='price-card'>
                 <h2>$ ${product.getPrice()}</h2>
                 <p>${product.getTitle()}</p>
             </div>
