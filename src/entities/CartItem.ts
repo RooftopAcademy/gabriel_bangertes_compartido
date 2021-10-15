@@ -23,6 +23,10 @@ export default class CartItem {
         return this.quantity;
     }
 
+    getSubTotal(): number {
+        return this.quantity * this.getProduct().getPrice();
+    }
+
     getProduct(): Product {
         return this.product;
     }
