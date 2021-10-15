@@ -1,4 +1,4 @@
-import ProductInterface from '../interface/ProductInterface';
+import ProductInterface from '../interfaces/ProductInterface';
 import Product from './Product';
 
 export default class Catalog {

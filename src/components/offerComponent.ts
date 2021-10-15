@@ -1,4 +1,4 @@
-import Product from '../entity/Product';
+import Product from '../entities/Product';
 
 export default function offerComponent(offer: Product): string {
     return `
