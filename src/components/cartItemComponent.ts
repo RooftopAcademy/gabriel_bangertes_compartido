@@ -13,7 +13,7 @@ export default function cartItemComponent(cartItem: CartItem): string {
             <div>${cartItem.getQuantity()}</div>
             <div><button class="plus-button button" data-id="${cartItem.getProduct().getId()}"><icon class="fas fa-plus"></icon></button></div>
         </div>
-        <div>$ ${cartItem.getProduct().getPrice() * cartItem.getQuantity()}</div>
+        <div class="price">$ ${cartItem.getSubTotal()}</div>
     </div>
     `;
 }
