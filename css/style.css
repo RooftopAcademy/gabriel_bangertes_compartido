@@ -194,12 +194,18 @@ a:hover {
 
 .footer {
   background-color: #fff;
-  height: 20vh;
+  height: 25vh;
 }
 
 .footer-item {
   flex-grow: 1;
   flex-basis: 0;
+  font-size: large;
+}
+
+.socials {
+  font-size: xx-large;
+  gap: 5px;
 }
 
 .footer-title {

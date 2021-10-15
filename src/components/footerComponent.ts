@@ -23,10 +23,11 @@ export default function footerComponent(): string {
                 <div class="contact-list-item">info@coffestore.com</div>
                 <div class="contact-list-item">Tel: +54 842 4987-564</div>
             </div>
-            <div class="d-flex jc-space-evenly socials">
-                <div class="socials-item"><a href="#"><i class="fas fa-facebook-square"></i></a></div>
-                <div class="socials-item"><a href="#"><i class="fas fa-twitter-square"></i></a></div>
-                <div class="socials-item"><a href="#"><i class="fas fa-instagram-square"></i></a></div>
+            <br>
+            <div class="d-flex jc-space-around socials">
+                <div class="socials-item"><a href="#"><i class="fab fa-facebook-square"></i></a></div>
+                <div class="socials-item"><a href="#"><i class="fab fa-twitter-square"></i></a></div>
+                <div class="socials-item"><a href="#"><i class="fab fa-instagram-square"></i></a></div>
             </div>
         </div>
     </div>`
