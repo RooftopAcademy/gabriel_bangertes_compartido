@@ -10,6 +10,7 @@ import carrouselComponent from "../components/carrouselComponent";
 import footerComponent from "../components/footerComponent";
 import cartView from "../views/cartView";
 import cartItemComponent from "../components/cartItemComponent";
+import CartItem from "./CartItem";
 
 export default class UI {
 
@@ -109,8 +110,12 @@ export default class UI {
     goToCartButtonListener(): () => void {
         return () => {
             this.render(this.main, cartView(this.store.getCart()));
-            const cartItems: HTMLElement = this.main.querySelector('.cart-items');
-            this.addComponents(cartItems, cartItemComponent, this.store.getCart().getItems())
+            if (this.store.getCart().getItems().length) {
+                const cartItems: HTMLElement = this.main.querySelector('.cart-items');
+                this.addComponents(cartItems, cartItemComponent, this.store.getCart().getItems());
+                this.attachPlusButtonActions();
+                this.attachMinusButtonActions();
+            }
         }
     }
 
@@ -134,4 +139,44 @@ export default class UI {
             this.addToCartButtonListener(+button.dataset.id)
         )
     }
+
+    minusButtonListener(id: number): () => void {
+        return () => {
+            const cartItem: CartItem = this.store
+                .getCart()
+                .getItemByProduct(this.store.getProductById(id));
+            this.store.getCart().decreaseProductQuantity(cartItem);
+            this.goToCartButtonListener()();
+        }
+    }
+
+    attachMinusButtonActions(): void {
+        Array.from(this.main.querySelectorAll('.minus-button') as NodeListOf<HTMLElement>)
+            .forEach((minusButtonElement: HTMLElement) => {
+                    minusButtonElement.addEventListener(
+                        'click',
+                        () => this.minusButtonListener(+minusButtonElement.dataset.id)()
+                    );
+                }
+            );
+    }
+
+    plusButtonListener(id: number): () => void {
+        return () => {
+            this.addToCartButtonListener(id)();
+            this.goToCartButtonListener()();
+        }
+    }
+
+    attachPlusButtonActions(): void {
+        Array.from(this.main.querySelectorAll('.plus-button') as NodeListOf<HTMLElement>)
+            .forEach((plusButtonElement: HTMLElement) => {
+                plusButtonElement.addEventListener(
+                    'click',
+                    () => this.plusButtonListener(+plusButtonElement.dataset.id)()
+                );
+            }
+        );
+    }
+
 }
