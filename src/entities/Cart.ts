@@ -45,4 +45,10 @@ export default class Cart {
             (item: CartItem) => (item.getProduct() == product)
         )[0];
     }
+
+    getTotal(): number {
+        return this.items.reduce(
+            (previous: number, current: CartItem) => previous + current.getSubTotal(), 0
+        );
+    }
 }
