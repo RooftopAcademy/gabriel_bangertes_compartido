@@ -82,6 +82,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.logo-img {
+  width: 32px;
+}
+
 .logotype a:hover {
   text-decoration: none;
 }
