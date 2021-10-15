@@ -6,12 +6,12 @@ export default function productComponent(product: Product): string {
             <div>
                 <img src='${product.getImg()}' class='product-img' alt="imagen">
             </div>
-            <div class='price'>
+            <div class='price-card'>
                 <h2>$ ${product.getPrice()}</h2>
                 <p>${product.getTitle()}</p>
             </div>
             <div>
-                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+                <button class='cart-button button' data-id='${product.getId()}'>COMPRAR</button>
             </div>
         </div>
         `;
