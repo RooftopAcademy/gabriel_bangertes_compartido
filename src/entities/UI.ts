@@ -69,6 +69,8 @@ export default class UI {
         (navbar.querySelector('.menu') as HTMLElement)
             .addEventListener('click',
                 () => this.toggleNavbar(navbar as HTMLElement));
+        (navbar.querySelector('.cart-button') as HTMLElement)
+            .addEventListener('click', this.goToCartButtonListener());
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
