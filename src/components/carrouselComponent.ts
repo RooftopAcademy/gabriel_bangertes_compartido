@@ -1,6 +1,5 @@
 export default function carrouselComponent(): string {
     return `
-    <div>
-        <h2>CARROUSEL</h2>
-    </div>`
+        <img class="carrousel-img" src="img/carrousel.jpg" alt="CARROUSEL">
+    `
 }

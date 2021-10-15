@@ -219,6 +219,12 @@ a:hover {
   border-radius: 0.25em;
 }
 
+.carrousel-img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
 .comment {
   border-radius: 0.25em;
   margin: 3px;
