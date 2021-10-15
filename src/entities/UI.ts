@@ -11,6 +11,7 @@ import footerComponent from "../components/footerComponent";
 import cartView from "../views/cartView";
 import cartItemComponent from "../components/cartItemComponent";
 import CartItem from "./CartItem";
+import notificationComponent from "../components/notificationComponent";
 
 export default class UI {
 
@@ -129,9 +130,21 @@ export default class UI {
     }
 
     addToCartButtonListener(id: number): () => void {
-        return () => this.store.getCart().addItem(
-            this.store.getProductById(id)
-        );
+        return () => {
+            this.store.getCart().addItem(
+                this.store.getProductById(id)
+            );
+
+            const notification: HTMLElement = this.main.querySelector('.notification') as HTMLElement;
+            if (notification) {
+                this.render(notification, notificationComponent(
+                    this.store.getCart()
+                        .getItemByProduct(this.store.getProductById(id))
+                    )
+                )
+                setTimeout(() => notification.innerHTML = '', 2000);
+            }
+        }
     }
 
     attachAddToCartButtonActions(): void {
