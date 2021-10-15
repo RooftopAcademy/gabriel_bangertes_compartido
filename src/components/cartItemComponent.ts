@@ -2,7 +2,7 @@ import CartItem from "../entities/CartItem";
 
 export default function cartItemComponent(cartItem: CartItem): string {
     return `
-    <div class="d-flex cart-item jc-space-evenly ai-center">
+    <div class="d-flex cart-item products-item jc-space-evenly ai-center">
         <div>
             <img class="product-img" src="${cartItem.getProduct().getImg()}" alt="${cartItem.getProduct().getTitle()}">
         </div>
