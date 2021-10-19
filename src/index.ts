@@ -1,4 +1,6 @@
 import UI from './entities/UI';
+import offerComponent from "./components/offerComponent";
+import productComponent from "./components/productComponent";
 
 const ui: UI = new UI(document);
 
@@ -12,7 +14,7 @@ const ui: UI = new UI(document);
             </div>
         </div>`;
     const products: HTMLElement = (main.querySelector('.products') as HTMLElement);
-    ui.addProductComponents(products, ui.getStore().getCatalog());
+    ui.addComponents(products, productComponent, ui.getStore().getCatalog());
     ui.productButton();
     ui.toggleNavbar();
 });
@@ -30,7 +32,7 @@ const ui: UI = new UI(document);
             </div>
         </div>`;
     const offers: HTMLElement = (main.querySelector('.offers') as HTMLElement);
-    ui.addOfferComponents(offers, ui.getStore().getCatalog());
+    ui.addComponents(offers, offerComponent, ui.getStore().getCatalog());
     ui.productButton();
     ui.toggleNavbar();
 });

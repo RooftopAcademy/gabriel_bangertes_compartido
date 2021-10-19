@@ -2,7 +2,8 @@ import Product from '../entities/Product';
 
 export default function productDetailView(product: Product): string {
     return `
-        <div class='d-flex fd-column products-item jc-space-evenly ai-center' data-id='${product.getId()}'>
+        <div class="notification"></div>
+        <div class='d-flex fd-column products-item jc-space-evenly ai-center w-95' data-id='${product.getId()}'>
             <div>
                 <img src='${product.getImg()}' class='offer-img' alt="image">
             </div>
@@ -16,7 +17,10 @@ export default function productDetailView(product: Product): string {
                 <p>${product.getDescription()}</p>
             </div>
             <div>
-                <button class='cart-button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+                <button class='add-to-cart-button button' data-id='${product.getId()}'>AGREGAR AL CARRITO</button>
+            </div>
+            <div>
+                <button class='cart-button button'>VER CARRITO</button>
             </div>
         </div>
         <div>

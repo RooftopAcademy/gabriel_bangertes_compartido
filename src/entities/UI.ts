@@ -3,12 +3,15 @@ import Product from './Product';
 import ProductInterface from '../interfaces/ProductInterface';
 import CommentInterface from '../interfaces/CommentInterface';
 import productDetailView from '../views/productDetailView';
-import productComponent from '../components/productComponent';
 import offerComponent from '../components/offerComponent';
 import commentComponent from '../components/commentComponent';
 import navbarComponent from '../components/navbarComponent';
 import carrouselComponent from "../components/carrouselComponent";
 import footerComponent from "../components/footerComponent";
+import cartView from "../views/cartView";
+import cartItemComponent from "../components/cartItemComponent";
+import CartItem from "./CartItem";
+import notificationComponent from "../components/notificationComponent";
 
 export default class UI {
 
@@ -20,16 +23,16 @@ export default class UI {
         this.main = theDocument.querySelector('main');
         this.footer = theDocument.querySelector('.footer');
 
-        this.render(this.carrousel, carrouselComponent);
+        this.render(this.carrousel, carrouselComponent());
 
-        this.render(this.footer, footerComponent);
+        this.render(this.footer, footerComponent());
 
         this.fetchProducts(
             this.app.querySelector('.offers'),
             this.productButton
         )
 
-        this.render(this.nav, navbarComponent);
+        this.render(this.nav, navbarComponent());
 
         this.addNavbarActions(this.nav);
     }
@@ -45,8 +48,8 @@ export default class UI {
         return this.store;
     }
 
-    render(element: HTMLElement, component: () => string): void {
-        element.innerHTML = component();
+    render(element: HTMLElement, component: string): void {
+        element.innerHTML = component;
     }
 
     toggleHamburgerIcon(iconElement: HTMLElement): void {
@@ -67,13 +70,15 @@ export default class UI {
         (navbar.querySelector('.menu') as HTMLElement)
             .addEventListener('click',
                 () => this.toggleNavbar(navbar as HTMLElement));
+        (navbar.querySelector('.cart-button') as HTMLElement)
+            .addEventListener('click', this.goToCartButtonListener());
     }
 
     fetchProducts(offers: HTMLElement, productButton: () => void): void {
         fetch('products.json')
             .then((response: Response) => (response.ok ? response.json() : Promise.reject(response)))
             .then((json: ProductInterface[]) => {
-                this.addOfferComponents(offers, this.store.addProducts(json));
+                this.addComponents(offers, offerComponent, this.store.addProducts(json));
                 productButton();
             })
     }
@@ -86,16 +91,10 @@ export default class UI {
             ));
     }
 
-    addOfferComponents(theHtmlElement: HTMLElement, theOfferList: Product[]) {
-        theOfferList.forEach((offer: Product) => {
-            theHtmlElement.innerHTML += offerComponent(offer);
-        });
-    }
-
-    addProductComponents(theHtmlElement: HTMLElement, theProductList: Product[]) {
-        theProductList.forEach((product: Product) => {
-            theHtmlElement.innerHTML += productComponent(product);
-        });
+    addComponents(theHTMLElement: HTMLElement, component: (item: object) => string, list: object[]) {
+        list.forEach((item: object) => {
+            theHTMLElement.innerHTML += component(item);
+        })
     }
 
     renderDetailView(offerViewElement: HTMLElement) {
@@ -106,5 +105,93 @@ export default class UI {
         offer.getComments().forEach((comment: CommentInterface) => {
             this.main.innerHTML += commentComponent(comment);
         });
+
+        this.attachGoToCartButtonActions();
+        this.attachAddToCartButtonActions();
     }
+
+    goToCartButtonListener(): () => void {
+        return () => {
+            this.render(this.main, cartView(this.store.getCart()));
+            if (this.store.getCart().getItems().length) {
+                const cartItems: HTMLElement = this.main.querySelector('.cart-items');
+                this.addComponents(cartItems, cartItemComponent, this.store.getCart().getItems());
+                this.attachPlusButtonActions();
+                this.attachMinusButtonActions();
+            }
+        }
+    }
+
+    attachGoToCartButtonActions(): void {
+        this.main.querySelector('.cart-button').addEventListener(
+            'click',
+            this.goToCartButtonListener()
+        )
+    }
+
+    addToCartButtonListener(id: number): () => void {
+        return () => {
+            this.store.getCart().addItem(
+                this.store.getProductById(id)
+            );
+
+            const notification: HTMLElement = this.main.querySelector('.notification') as HTMLElement;
+            if (notification) {
+                this.render(notification, notificationComponent(
+                    this.store.getCart()
+                        .getItemByProduct(this.store.getProductById(id))
+                    )
+                )
+                setTimeout(() => notification.innerHTML = '', 2000);
+            }
+        }
+    }
+
+    attachAddToCartButtonActions(): void {
+        const button: HTMLElement = this.main.querySelector('.add-to-cart-button') as HTMLElement;
+        button.addEventListener(
+            'click',
+            this.addToCartButtonListener(+button.dataset.id)
+        )
+    }
+
+    minusButtonListener(id: number): () => void {
+        return () => {
+            const cartItem: CartItem = this.store
+                .getCart()
+                .getItemByProduct(this.store.getProductById(id));
+            this.store.getCart().decreaseProductQuantity(cartItem);
+            this.goToCartButtonListener()();
+        }
+    }
+
+    attachMinusButtonActions(): void {
+        Array.from(this.main.querySelectorAll('.minus-button') as NodeListOf<HTMLElement>)
+            .forEach((minusButtonElement: HTMLElement) => {
+                    minusButtonElement.addEventListener(
+                        'click',
+                        () => this.minusButtonListener(+minusButtonElement.dataset.id)()
+                    );
+                }
+            );
+    }
+
+    plusButtonListener(id: number): () => void {
+        return () => {
+            this.addToCartButtonListener(id)();
+            this.goToCartButtonListener()();
+        }
+    }
+
+    attachPlusButtonActions(): void {
+        Array.from(this.main.querySelectorAll('.plus-button') as NodeListOf<HTMLElement>)
+            .forEach((plusButtonElement: HTMLElement) => {
+                plusButtonElement.addEventListener(
+                    'click',
+                    () => this.plusButtonListener(+plusButtonElement.dataset.id)()
+                );
+            }
+        );
+    }
+
 }
